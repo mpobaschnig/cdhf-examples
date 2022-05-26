@@ -19,6 +19,8 @@ from collections import defaultdict
 from typing import List, Optional
 from itertools import combinations
 
+from cdhf.data import Data
+
 import igraph as ig
 import numpy as np
 
@@ -27,7 +29,7 @@ class CD:
     graph: Optional[ig.Graph] = None
     communities: Optional[ig.VertexClustering] = None
     layout: Optional[ig.Layout] = None
-    data = None
+    data: Data = None
 
     def set_data(self, data) -> None:
         self.data = data

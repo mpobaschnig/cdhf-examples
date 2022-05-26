@@ -17,29 +17,28 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-def main() -> None:
-    import cd
-    from cdhf import Data
+from cdhf.data import Data
 
+import cd
+
+
+def main() -> None:
     data = Data("../../input/mmdata.json")
 
     data.load_all()
 
-    cd = cd.CD()
+    c = cd.CD()
 
-    cd.set_data(data)
+    c.set_data(data)
 
-    cd.find()
+    c.find()
 
-    p = cd.plot_graph()
+    p = c.plot_graph()
     p.show()
 
-    pc = cd.plot_graph_with_communities()
+    pc = c.plot_graph_with_communities()
     pc.show()
 
 
 if __name__ == "__main__":
-    import sys
-    sys.path.insert(0, r'../')
-
     main()
