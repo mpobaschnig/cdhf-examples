@@ -79,22 +79,6 @@ class CD:
         self.graph = ig.Graph.TupleList(tuple_list, weights=True)
 
     def __threshold_remove_nodes(self) -> None:
-        node_degrees_list = self.graph.degree(self.graph.vs)
-
-        mean = np.mean(node_degrees_list)
-        sd = np.std(node_degrees_list)
-
-        self.__node_degree_upper = mean + sd * 3
-        self.__node_degree_lower = 2
-
-        to_remove: List[ig.Vertex] = []
-        for v in self.graph.vs:
-            if self.graph.degree(v) < self.__node_degree_lower:
-                to_remove.append(v)
-            if self.graph.degree(v) > self.__node_degree_upper:
-                to_remove.append(v)
-        self.graph.delete_vertices(to_remove)
-
         self.graph = self.graph.clusters().giant()
 
     def __find_communities(self) -> None:
