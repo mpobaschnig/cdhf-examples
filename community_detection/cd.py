@@ -43,10 +43,10 @@ class CD:
             for c in t.channels:
                 channel_sizes.append(len(c.channel_members))
 
-        mean = np.mean(channel_sizes)
-        sd = np.std(channel_sizes)
+        q1, q3 = np.percentile(channel_sizes, [25, 75])
+        upper_fence = q3 + 1.5 * (q3 - q1)
 
-        self.__channel_members_upper = mean + 3 * sd
+        self.__channel_members_upper = upper_fence
         self.__channel_members_lower = 2
 
     def __create_graph(self) -> None:
