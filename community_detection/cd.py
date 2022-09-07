@@ -76,6 +76,9 @@ class CD:
         for ((source, target), weight) in list(graph_connections.items()):
             tuple_list.append((source, target, weight))
 
+        tuple_list.sort(key=lambda x: x[1])
+        tuple_list.sort(key=lambda x: x[0])
+
         self.graph = ig.Graph.TupleList(tuple_list, weights=True)
 
     def __threshold_remove_nodes(self) -> None:
